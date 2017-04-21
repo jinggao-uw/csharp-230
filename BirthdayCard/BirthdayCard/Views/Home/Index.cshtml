@@ -1,0 +1,27 @@
+﻿@model BirthdayCard.Models.Users
+@{
+    Layout = null;
+}
+
+<style>
+    .btn {
+        color: white;
+        background-color: green;
+        padding: 10px;
+        text-decoration: none;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    <p style="background-color: black; color: grey; font: bolder; font-size: large; padding:10px; width: 200px;">Birthday Card Generator</p>
+    <p style="font-size: x-large">Send a Party Card</p>
+    @Html.ValidationSummary()
+    <p>From: @Html.TextBoxFor(t => t.From)</p>
+    <p>To: @Html.TextBoxFor(t => t.To)</p>
+    <p>Message: @Html.TextBoxFor(t => t.Message)</p>
+
+    <input class="btn btn-success" type="submit" value="Send Card" />
+
+    <p>&copy; 2016 - My ASP.NET Application</p>
+}
