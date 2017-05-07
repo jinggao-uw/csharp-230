@@ -1,0 +1,25 @@
+﻿@model IEnumerable<LearningCenter.Website.Models.ClassModel>
+
+<h2>Classes</h2>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.ClassName
+        </td>
+        <td>
+            @item.ClassDescription
+        </td>
+        <td>
+            @item.ClassPrice
+        </td>
+    </tr>
+}
+
+</table>
