@@ -51,15 +51,15 @@ namespace LearningCenter.Repository
 
         public ClassModel[] ListForUser(int userId)
         {
-            return DatabaseAccessor.Instance.Users.First(t => t.UserId == userId)
-                .Classes.Select(t =>
-                new ClassModel
-                {
-                    ClassId = t.ClassId,
-                    ClassName = t.ClassName,
-                    ClassDescription = t.ClassDescription,
-                    ClassPrice = t.ClassPrice
-                }).ToArray();
+            var user = DatabaseAccessor.Instance.Users.FirstOrDefault(u => u.UserId == userId);
+
+            return user.Classes.Select(t => new ClassModel
+            {
+                ClassId = t.ClassId,
+                ClassName = t.ClassName,
+                ClassDescription = t.ClassDescription,
+                ClassPrice = t.ClassPrice
+            }).ToArray();
          }
     }
 }
