@@ -24,12 +24,6 @@ namespace LearningCenter.Website.Controllers
             return View();
         }
 
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-
         [HttpPost]
         public ActionResult LogIn(LoginModel loginModel, string returnUrl)
         {
@@ -52,6 +46,12 @@ namespace LearningCenter.Website.Controllers
             }
 
             return View(loginModel);
+        }
+
+
+        public ActionResult Register()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -83,6 +83,93 @@ namespace LearningCenter.Website.Controllers
             }
 
             return View(registerModel);
+        }
+
+        public ActionResult EnrollInClass()
+        {
+            var allClasses = classManager.ListAll();
+            var classListViewModel = new ClassListViewModel()
+            {
+                classes = Array.ConvertAll(allClasses, (c) => {
+                    return new LearningCenter.Website.Models.ClassModel()
+                    {
+                        ClassId = c.ClassId,
+                        ClassName = c.ClassName,
+                        ClassDescription = c.ClassDescription,
+                        ClassPrice = c.ClassPrice
+                    };
+                })
+            };
+
+            return View(classListViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult EnrollInClass(int selectedClass)
+        {
+            if (ModelState.IsValid)
+            {
+                LearningCenter.Website.Models.UserModel userModel = Session["User"] as Models.UserModel;
+
+                if (userModel != null)
+                {
+                    bool ret = classManager.AddClassForUser(selectedClass, userModel.Id);
+                    if (ret)
+                    {
+                        return Redirect("~/Home/StudentClasses");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Error! Class already added");
+                        var allClasses = classManager.ListAll();
+                        var classListViewModel = new ClassListViewModel()
+                        {
+                            classes = Array.ConvertAll(allClasses, (c) => {
+                                return new LearningCenter.Website.Models.ClassModel()
+                                {
+                                    ClassId = c.ClassId,
+                                    ClassName = c.ClassName,
+                                    ClassDescription = c.ClassDescription,
+                                    ClassPrice = c.ClassPrice
+                                };
+                            })
+                        };
+
+                        return View(classListViewModel);
+                    }
+
+                }
+            }
+
+            return Redirect("~/Home/Login");
+        }
+
+        public ActionResult StudentClasses()
+        {
+            LearningCenter.Website.Models.UserModel userModel = Session["User"] as Models.UserModel;
+
+            if (userModel != null)
+            {
+                var allClasses = classManager.ListForUser(userModel.Id);
+
+                var classListViewModel = new ClassListViewModel()
+                {
+                    classes = Array.ConvertAll(allClasses, (c) => {
+                        return new LearningCenter.Website.Models.ClassModel()
+                        {
+                            ClassId = c.ClassId,
+                            ClassName = c.ClassName,
+                            ClassDescription = c.ClassDescription,
+                            ClassPrice = c.ClassPrice
+                        };
+                    })
+                };
+                return View(classListViewModel.classes);
+            }
+            else
+            {
+                return Redirect("~/Home/Login");
+            }
         }
 
         public ActionResult ClassList()

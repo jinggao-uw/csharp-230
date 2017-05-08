@@ -10,6 +10,8 @@ namespace LearningCenter.Business
     public interface IClassManager
     {
         ClassModel[] ListAll();
+        ClassModel[] ListForUser(int userId);
+        bool AddClassForUser(int classId, int userId);
     }
 
     public class ClassModel
@@ -44,6 +46,28 @@ namespace LearningCenter.Business
             });
 
             return newArray;
+        }
+
+        public ClassModel[] ListForUser(int userId)
+        {
+            var allClasses = classRepository.ListForUser(userId);
+
+            var newArray = Array.ConvertAll(allClasses, (c) => {
+                return new ClassModel()
+                {
+                    ClassId = c.ClassId,
+                    ClassName = c.ClassName,
+                    ClassDescription = c.ClassDescription,
+                    ClassPrice = c.ClassPrice
+                };
+            });
+
+            return newArray;
+        }
+
+        public bool AddClassForUser(int classId, int userId)
+        {
+            return classRepository.AddClassForUser(classId, userId);
         }
     }
 }

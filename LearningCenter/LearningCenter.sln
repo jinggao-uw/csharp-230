@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCenter.Database", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCenter.Repository", "LearningCenter.Repository\LearningCenter.Repository.csproj", "{2BFB1508-D025-4D30-AA7D-4560BC44D288}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningCenter.DB", "LearningCenter.DB\LearningCenter.DB.csproj", "{3A387958-C34E-43C9-9ABA-069BF5390DFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{2BFB1508-D025-4D30-AA7D-4560BC44D288}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BFB1508-D025-4D30-AA7D-4560BC44D288}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BFB1508-D025-4D30-AA7D-4560BC44D288}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A387958-C34E-43C9-9ABA-069BF5390DFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A387958-C34E-43C9-9ABA-069BF5390DFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A387958-C34E-43C9-9ABA-069BF5390DFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A387958-C34E-43C9-9ABA-069BF5390DFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

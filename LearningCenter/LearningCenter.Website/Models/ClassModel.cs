@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LearningCenter.Website.Models
 {
-    public class ClassModel
+    public class ClassModel : System.Web.Mvc.SelectListItem
     {
         public int ClassId { get; set; }
         public string ClassName { get; set; }

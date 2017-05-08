@@ -1,0 +1,13 @@
+﻿@model LearningCenter.Website.Models.ClassListViewModel
+
+@using (Html.BeginForm("EnrollInClass", "Home", FormMethod.Post))
+{
+    <h2>Enrool in Class</h2>
+    @Html.ValidationSummary()
+    @Html.LabelFor(m => m.SelectedClass)
+    <br />
+    @Html.DropDownListFor(m => m.SelectedClass, new SelectList(Model.classes, "ClassId", "ClassName"))
+    @Html.ValidationMessageFor(m => m.SelectedClass)
+
+    <input type="submit" value="Add Class" class="btn btn-default" />
+}
